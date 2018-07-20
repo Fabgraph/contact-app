@@ -4,17 +4,8 @@
  * via @angular/core
  */
 import {Component} from '@angular/core';
+import {Contact} from './models/contact';
 
-class Contact {
-  id: number;
-  name: string;
-  username: string;
-  email: string;
-  adress?: object;
-  phone?: number;
-  website?: string;
-  company?: object;
-}
 
 /**
  * @Component est ce qu'on appelle un décorateur.
@@ -59,6 +50,8 @@ export class AppComponent {
   // -- déclaration d'une variable
   title = 'Gestionnaire de contacts';
 
+  // -- Contact choisi par mon utilisateur
+  contactActif: Contact;
 
   // -- Déclaration d'un Objet contact
   unContact: Contact = {
@@ -69,7 +62,7 @@ export class AppComponent {
   };
 
   // -- Tableau de Contacts
-  mesContacts = [{
+  mesContacts: Contact[] = [{
       id: 1,
       name: 'Fabrice DOMOISON',
       username: 'fabgraph',
@@ -95,4 +88,13 @@ export class AppComponent {
 
 
   ]
+
+  /**
+   * Ma fonction showContact, prend un contact
+   * en paramètre.
+   * @param {Contact} contactCliqueParMonUtilisateur
+   */
+  showContact(contactCliqueParMonUtilisateur: Contact) {
+    this.contactActif = contactCliqueParMonUtilisateur;
+  }
 }
