@@ -3,8 +3,9 @@
  * notre application, on importe "Component"
  * via @angular/core
  */
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Contact} from './models/contact';
+import {UserApiService} from './services/user-api.service';
 
 
 /**
@@ -46,7 +47,7 @@ import {Contact} from './models/contact';
  * Dans notre contexte MVVM, notre classe
  * correspond au Model.
  */
-export class AppComponent {
+export class AppComponent implements OnInit {
   // -- déclaration d'une variable
   title = 'Gestionnaire de contacts';
 
@@ -96,5 +97,17 @@ export class AppComponent {
    */
   showContact(contactCliqueParMonUtilisateur: Contact) {
     this.contactActif = contactCliqueParMonUtilisateur;
+  }
+  constructor(private userApiService: UserApiService) {}
+  /**
+   * la fonction ngOnInit est appelée automatiquement
+   * par Angular, au chargement de l'application.
+   */
+  ngOnInit(): void {
+    this.userApiService.getUsers().subscribe(
+      users => {
+        this.mesContacts = users;
+      }
+    );
   }
 }

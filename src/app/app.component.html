@@ -17,13 +17,14 @@
       <!--{{ unContact.name + ' ' + unContact.username }}-->
       <div class="list-group">
         <a  *ngFor="let contact of mesContacts"
-            [class.active]="contatActif === contact"
+            [class.active]="contactActif === contact"
             (click)="showContact(contact)"
             href="javascript:void(0)"
             class="list-group-item list-group-item-action disabled">
           {{ contact.name }}
         </a>
       </div>
+      <app-add></app-add>
     </div>
     <div class="col-sm-8">
         <app-profil [contact]="contactActif"></app-profil>
