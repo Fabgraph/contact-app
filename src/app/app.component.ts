@@ -106,7 +106,7 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.userApiService.getUsers().subscribe(
       users => {
-        this.mesContacts = users;
+        // this.mesContacts = users;
       }
     );
   }
